@@ -1,4 +1,4 @@
-# ember-paper-selection-dialog [![Build Status](https://travis-ci.org/CoachLogix/ember-paper-selection-dialog.svg?branch=master)](https://travis-ci.org/CoachLogix/ember-paper-selection-dialog)
+# ember-paper-selection-dialog [![Build Status](https://travis-ci.org/CoachLogix/ember-paper-selection-dialog.svg?branch=master)](https://travis-ci.org/CoachLogix/ember-paper-selection-dialog) [![Ember Observer Score](http://emberobserver.com/badges/ember-paper-selection-dialog.svg)](http://emberobserver.com/addons/ember-paper-selection-dialog)
 
 This is an [ember-paper](https://github.com/miguelcobain/ember-paper) addon that provides dialogs for selections. Think of it as a select component, but using dialogs.
 
