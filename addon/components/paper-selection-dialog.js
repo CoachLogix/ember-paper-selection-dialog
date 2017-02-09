@@ -7,7 +7,11 @@ export default Component.extend({
   layout,
   tagName: '',
 
+  multiple: false,
   closeOnConfirm: true,
+
+  cancelLabel: 'Cancel',
+  confirmLabel: 'Confirm',
 
   didReceiveAttrs() {
     let promises = [];
@@ -65,7 +69,7 @@ export default Component.extend({
   },
 
   actions: {
-    addOrRemoveItem(option) {
+    updateSelected(option) {
       let newSelection = this.buildSelection(option, this.get('_selected'));
       this.set('_selected', newSelection);
     },

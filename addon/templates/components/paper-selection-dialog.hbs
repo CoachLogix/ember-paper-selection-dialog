@@ -21,14 +21,14 @@
       {{paper-progress-circular}}
     {{else}}
       {{#paper-list}}
-        {{#each _options as |option|}}
+        {{#each _options as |option index|}}
           {{#paper-item as |controls|}}
-            <p>{{yield option (ember-paper-selection-dialog-is-selected option _selected)}}</p>
+            <p>{{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}</p>
             {{#if multiple}}
               {{controls.checkbox
                 value=(ember-paper-selection-dialog-is-selected option _selected)
                 secondary=true
-                onChange=(action "addOrRemoveItem" option)}}
+                onChange=(action "updateSelected" option)}}
             {{else}}
               {{controls.radio
                 value=option
@@ -44,10 +44,10 @@
   {{/paper-dialog-content}}
   {{#paper-dialog-actions class="layout-row"}}
     {{#paper-button onClick=(action "close")}}
-      {{if cancelLabel cancelLabel "Cancel"}}
+      {{cancelLabel}}
     {{/paper-button}}
     {{#paper-button primary=true onClick=(action "confirm")}}
-      {{if confirmLabel confirmLabel "Confirm"}}
+      {{confirmLabel}}
     {{/paper-button}}
   {{/paper-dialog-actions}}
 {{/paper-dialog}}
