@@ -1,5 +1,55 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+{{#if showSingle}}
+  {{#paper-selection-dialog
+    title="Select a country" class="flex-50" fullscreen=true
+    options=options selected=singleSelected
+    onSelect=(action (mut singleSelected)) onClose=(action (mut showSingle) false) as |option|}}
+    {{option}}
+  {{/paper-selection-dialog}}
+{{/if}}
 
-{{outlet}}
+{{#if showMultiple}}
+  {{#paper-selection-dialog
+    title="Select multiple countries" class="flex-50" fullscreen=true
+    options=options selected=multipleSelected multiple=true
+    onSelect=(action (mut multipleSelected)) onClose=(action (mut showMultiple) false) as |option|}}
+    {{option}}
+  {{/paper-selection-dialog}}
+{{/if}}
+
+<div class="md-padding">
+
+  <h1>paper selection dialog demo</h1>
+
+  <div class="layout-column layout-gt-sm-row">
+
+    <div class="flex-gt-sm-50 layout-column">
+      {{#paper-button primary=true raised=true onClick=(action (mut showSingle) true)}}
+        Show single selection dialog
+      {{/paper-button}}
+
+      {{#if singleSelected}}
+        You selected {{singleSelected}}.
+      {{else}}
+        No country was selected. Click the button above.
+      {{/if}}
+    </div>
+
+    <div class="flex-gt-sm-50 layout-column">
+      {{#paper-button primary=true raised=true onClick=(action (mut showMultiple) true)}}
+        Show multiple selection dialog
+      {{/paper-button}}
+
+      {{if multipleSelected "You selected:"}}
+
+      <ul>
+        {{#each multipleSelected as |country|}}
+          <li>{{country}}</li>
+        {{else}}
+          <li>No countries were selected. Click the button above.</li>
+        {{/each}}
+      </ul>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,53 @@
+{{#paper-dialog
+    class=class
+    clickOutsideToClose=clickOutsideToClose
+    origin=origin
+    openFrom=openFrom
+    closeTo=closeTo
+    escapeToClose=escapeToClose
+    focusOnOpen=focusOnOpen
+    fullscreen=fullscreen
+    parent=parent
+    onClose=(action "close")}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>{{title}}</h2>
+      <span class="flex"></span>
+      {{#paper-button iconButton=true onClick=(action "close")}}{{paper-icon icon="close"}}{{/paper-button}}
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+ {{#paper-dialog-content class="flex"}}
+    {{#if loading}}
+      {{paper-progress-circular}}
+    {{else}}
+      {{#paper-list}}
+        {{#each _options as |option|}}
+          {{#paper-item as |controls|}}
+            <p>{{yield option (ember-paper-selection-dialog-is-selected option _selected)}}</p>
+            {{#if multiple}}
+              {{controls.checkbox
+                value=(ember-paper-selection-dialog-is-selected option _selected)
+                secondary=true
+                onChange=(action "addOrRemoveItem" option)}}
+            {{else}}
+              {{controls.radio
+                value=option
+                groupValue=_selected
+                secondary=true
+                onChange=(action (mut _selected option))}}
+            {{/if}}
+          {{/paper-item}}
+        {{/each}}
+      {{/paper-list}}
+    {{/if}}
+
+  {{/paper-dialog-content}}
+  {{#paper-dialog-actions class="layout-row"}}
+    {{#paper-button onClick=(action "close")}}
+      {{if cancelLabel cancelLabel "Cancel"}}
+    {{/paper-button}}
+    {{#paper-button primary=true onClick=(action "confirm")}}
+      {{if confirmLabel confirmLabel "Confirm"}}
+    {{/paper-button}}
+  {{/paper-dialog-actions}}
+{{/paper-dialog}}
