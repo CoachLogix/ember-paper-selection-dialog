@@ -18,7 +18,9 @@
   {{/paper-toolbar}}
  {{#paper-dialog-content class="flex"}}
     {{#if loading}}
-      {{paper-progress-circular}}
+      <div class="layout-row layout-align-center-center">
+        {{paper-progress-circular diameter=130}}
+      </div>
     {{else}}
       {{#paper-list}}
         {{#each _options as |option index|}}
