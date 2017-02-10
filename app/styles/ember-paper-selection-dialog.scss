@@ -1,0 +1,30 @@
+md-dialog {
+  @media (max-width: $layout-breakpoint-sm - 1) {
+    min-width: 80%;
+  }
+  
+  &> .md-title {
+    margin: 0;
+    padding: $dialog-padding $dialog-padding 20px $dialog-padding;
+  }
+
+  md-list {
+    overflow: auto;
+    padding: 0;
+    md-list-item .md-no-style {
+      padding: 0 $dialog-padding;
+    }
+  }
+
+  .md-actions, md-dialog-actions {
+    @include rtl(padding-right, $baseline-grid, $dialog-padding);
+    @include rtl(padding-left, $dialog-padding, $baseline-grid);
+  }
+}
+
+md-list-item > md-radio-button, md-list-item .md-list-item-inner > md-radio-button {
+  width: 24px;
+  margin-left: 3px;
+  margin-right: 29px;
+  margin-top: 16px;
+}

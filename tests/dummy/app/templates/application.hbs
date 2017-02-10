@@ -1,6 +1,6 @@
 {{#if showSingle}}
   {{#paper-selection-dialog
-    title="Select a country" class="flex-50" fullscreen=true
+    title="Country" origin=".single-button" class="flex-gt-sm-30"
     options=options selected=singleSelected
     onSelect=(action (mut singleSelected)) onClose=(action (mut showSingle) false) as |option|}}
     {{option}}
@@ -9,7 +9,7 @@
 
 {{#if showMultiple}}
   {{#paper-selection-dialog
-    title="Select multiple countries" class="flex-50" fullscreen=true
+    title="Countries" origin=".multiple-button" class="flex-gt-sm-30"
     options=options selected=multipleSelected multiple=true
     onSelect=(action (mut multipleSelected)) onClose=(action (mut showMultiple) false) as |option|}}
     {{option}}
@@ -23,19 +23,21 @@
   <div class="layout-column layout-gt-sm-row">
 
     <div class="flex-gt-sm-50 layout-column">
-      {{#paper-button primary=true raised=true onClick=(action (mut showSingle) true)}}
+      {{#paper-button class="single-button" primary=true raised=true onClick=(action (mut showSingle) true)}}
         Show single selection dialog
       {{/paper-button}}
 
-      {{#if singleSelected}}
-        You selected {{singleSelected}}.
-      {{else}}
-        No country was selected. Click the button above.
-      {{/if}}
+      <p>
+        {{#if singleSelected}}
+          You selected {{singleSelected}}.
+        {{else}}
+          No country was selected. Click the button above.
+        {{/if}}
+      </p>
     </div>
 
     <div class="flex-gt-sm-50 layout-column">
-      {{#paper-button primary=true raised=true onClick=(action (mut showMultiple) true)}}
+      {{#paper-button class="multiple-button" primary=true raised=true onClick=(action (mut showMultiple) true)}}
         Show multiple selection dialog
       {{/paper-button}}
 

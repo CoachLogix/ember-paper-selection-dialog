@@ -31,6 +31,13 @@ Run:
 ember install ember-paper-selection-dialog
 ```
 
+Don't forget to import your styles in your `app.scss` **after** importing ember paper styles:
+
+```scss
+@import "ember-paper";
+@import "ember-paper-selection-dialog";
+```
+
 ## API
 
 - All the properties that `paper-dialog` supports.

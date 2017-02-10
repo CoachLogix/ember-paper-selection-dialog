@@ -7,11 +7,15 @@ export default Component.extend({
   layout,
   tagName: '',
 
+  // paper dialog truthy defaults
+  focusOnOpen: true,
+  escapeToClose: true,
+
   multiple: false,
   closeOnConfirm: true,
 
   cancelLabel: 'Cancel',
-  confirmLabel: 'Confirm',
+  confirmLabel: 'OK',
 
   didReceiveAttrs() {
     let promises = [];

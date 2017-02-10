@@ -9,41 +9,35 @@
     fullscreen=fullscreen
     parent=parent
     onClose=(action "close")}}
-  {{#paper-toolbar}}
-    {{#paper-toolbar-tools}}
-      <h2>{{title}}</h2>
-      <span class="flex"></span>
-      {{#paper-button iconButton=true onClick=(action "close")}}{{paper-icon icon="close"}}{{/paper-button}}
-    {{/paper-toolbar-tools}}
-  {{/paper-toolbar}}
- {{#paper-dialog-content class="flex"}}
+
+    {{#if title}}
+      <h2 class="md-title">{{title}}</h2>
+    {{/if}}
+
     {{#if loading}}
       <div class="layout-row layout-align-center-center">
         {{paper-progress-circular diameter=130}}
       </div>
     {{else}}
-      {{#paper-list}}
+      {{#paper-list class="flex"}}
         {{#each _options as |option index|}}
           {{#paper-item as |controls|}}
-            <p>{{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}</p>
             {{#if multiple}}
               {{controls.checkbox
                 value=(ember-paper-selection-dialog-is-selected option _selected)
-                secondary=true
                 onChange=(action "updateSelected" option)}}
             {{else}}
               {{controls.radio
                 value=option
                 groupValue=_selected
-                secondary=true
                 onChange=(action (mut _selected option))}}
             {{/if}}
+            <p>{{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}</p>
           {{/paper-item}}
         {{/each}}
       {{/paper-list}}
     {{/if}}
 
-  {{/paper-dialog-content}}
   {{#paper-dialog-actions class="layout-row"}}
     {{#paper-button onClick=(action "close")}}
       {{cancelLabel}}
@@ -52,4 +46,5 @@
       {{confirmLabel}}
     {{/paper-button}}
   {{/paper-dialog-actions}}
+  
 {{/paper-dialog}}

@@ -31,7 +31,7 @@ test('it renders `cancelLabel` if provided', function(assert) {
   `);
 
   return wait().then(() => {
-    assert.equal(this.$('.md-button').eq(1).text().trim(), 'a cancel label', 'rendered cancel label');
+    assert.equal(this.$('.md-button').eq(0).text().trim(), 'a cancel label', 'rendered cancel label');
   });
 });
 
@@ -319,6 +319,6 @@ test('pressing cancel button sends `onClose` action', function(assert) {
   `);
 
   return wait().then(() => {
-    this.$('.md-button').eq(1).click();
+    this.$('.md-button').eq(0).click();
   });
 });
