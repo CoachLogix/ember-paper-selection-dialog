@@ -14,6 +14,8 @@ export default Component.extend({
   multiple: false,
   closeOnConfirm: true,
 
+  itemClass: '',
+
   cancelLabel: 'Cancel',
   confirmLabel: 'OK',
 

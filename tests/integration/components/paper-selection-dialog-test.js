@@ -322,3 +322,21 @@ test('pressing cancel button sends `onClose` action', function(assert) {
     this.$('.md-button').eq(0).click();
   });
 });
+
+test('can specify paper-item class using `itemClass` property', function(assert) {
+  assert.expect(1);
+
+  this.options = numbers;
+
+  this.render(hbs`
+    <div id="paper-wormhole"></div>
+    {{#paper-selection-dialog options=options itemClass="some-class" as |option|}}
+      {{option}}
+    {{/paper-selection-dialog}}
+  `);
+
+  return wait().then(() => {
+    assert.equal(this.$('.some-class').length, 3, 'rendered 3 options with custom class');
+  });
+});
+

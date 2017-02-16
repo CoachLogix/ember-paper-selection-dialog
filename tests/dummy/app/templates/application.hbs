@@ -16,27 +16,37 @@
   {{/paper-selection-dialog}}
 {{/if}}
 
+{{#if showCustom}}
+  {{#paper-selection-dialog
+    title="People" origin=".custom-button" class="flex-gt-sm-30" itemClass="md-2-line"
+    options=people selected=customSelected
+    onSelect=(action (mut customSelected)) onClose=(action (mut showCustom) false) as |option|}}
+    <h3>{{option.name}}</h3>
+    <p>{{option.description}}</p>
+  {{/paper-selection-dialog}}
+{{/if}}
+
 <div class="md-padding">
 
   <h1>paper selection dialog demo</h1>
 
   <div class="layout-column layout-gt-sm-row">
 
-    <div class="flex-gt-sm-50 layout-column">
+    <div class="flex-gt-sm-33 layout-column">
       {{#paper-button class="single-button" primary=true raised=true onClick=(action (mut showSingle) true)}}
         Show single selection dialog
       {{/paper-button}}
 
       <p>
         {{#if singleSelected}}
-          You selected {{singleSelected}}.
+          You selected <strong>{{singleSelected}}</strong>.
         {{else}}
           No country was selected. Click the button above.
         {{/if}}
       </p>
     </div>
 
-    <div class="flex-gt-sm-50 layout-column">
+    <div class="flex-gt-sm-33 layout-column">
       {{#paper-button class="multiple-button" primary=true raised=true onClick=(action (mut showMultiple) true)}}
         Show multiple selection dialog
       {{/paper-button}}
@@ -50,6 +60,21 @@
           <li>No countries were selected. Click the button above.</li>
         {{/each}}
       </ul>
+
+    </div>
+
+    <div class="flex-gt-sm-33 layout-column">
+      {{#paper-button class="custom-button" primary=true raised=true onClick=(action (mut showCustom) true)}}
+        Show custom selection dialog
+      {{/paper-button}}
+
+      <p>
+        {{#if customSelected}}
+          You selected <strong>{{customSelected.name}}</strong>.
+        {{else}}
+          No country was selected. Click the button above.
+        {{/if}}
+      </p>
 
     </div>
   </div>

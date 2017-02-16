@@ -21,7 +21,7 @@
     {{else}}
       {{#paper-list class="flex"}}
         {{#each _options as |option index|}}
-          {{#paper-item as |controls|}}
+          {{#paper-item class=itemClass as |controls|}}
             {{#if multiple}}
               {{controls.checkbox
                 value=(ember-paper-selection-dialog-is-selected option _selected)
@@ -32,7 +32,9 @@
                 groupValue=_selected
                 onChange=(action (mut _selected option))}}
             {{/if}}
-            <p>{{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}</p>
+            <div class="md-list-item-text">
+              {{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}
+            </div>
           {{/paper-item}}
         {{/each}}
       {{/paper-list}}
@@ -46,5 +48,5 @@
       {{confirmLabel}}
     {{/paper-button}}
   {{/paper-dialog-actions}}
-  
+
 {{/paper-dialog}}
