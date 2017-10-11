@@ -18,6 +18,7 @@ export default Component.extend({
 
   cancelLabel: 'Cancel',
   confirmLabel: 'OK',
+  noOptionsMessage: 'No options.',
 
   didReceiveAttrs() {
     let promises = [];

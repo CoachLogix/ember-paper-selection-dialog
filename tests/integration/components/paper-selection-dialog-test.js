@@ -340,3 +340,40 @@ test('can specify paper-item class using `itemClass` property', function(assert)
   });
 });
 
+test('it renders a default message if options are empty', function(assert) {
+  assert.expect(3);
+
+  this.options = [];
+
+  this.render(hbs`
+    <div id="paper-wormhole"></div>
+    {{#paper-selection-dialog options=options as |option|}}
+      {{option}}
+    {{/paper-selection-dialog}}
+  `);
+
+  return wait().then(() => {
+    assert.equal(this.$('md-list-item').length, 1, 'rendered 1 item');
+    assert.equal(this.$('md-radio-button').length, 0, 'rendered 0 radio buttons');
+    assert.equal(this.$('.selection-dialog--no-options').text().trim(), 'No options.');
+  });
+});
+
+test('it renders a custom message if options are empty', function(assert) {
+  assert.expect(3);
+
+  this.options = [];
+
+  this.render(hbs`
+    <div id="paper-wormhole"></div>
+    {{#paper-selection-dialog options=options noOptionsMessage="no options, mate" as |option|}}
+      {{option}}
+    {{/paper-selection-dialog}}
+  `);
+
+  return wait().then(() => {
+    assert.equal(this.$('md-list-item').length, 1, 'rendered 1 item');
+    assert.equal(this.$('md-radio-button').length, 0, 'rendered 0 radio buttons');
+    assert.equal(this.$('.selection-dialog--no-options').text().trim(), 'no options, mate');
+  });
+});

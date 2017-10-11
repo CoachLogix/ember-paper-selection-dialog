@@ -1,44 +1,48 @@
 {{#paper-dialog
-    class=class
-    clickOutsideToClose=clickOutsideToClose
-    origin=origin
-    openFrom=openFrom
-    closeTo=closeTo
-    escapeToClose=escapeToClose
-    focusOnOpen=focusOnOpen
-    fullscreen=fullscreen
-    parent=parent
-    onClose=(action "close")}}
+  class=class
+  clickOutsideToClose=clickOutsideToClose
+  origin=origin
+  openFrom=openFrom
+  closeTo=closeTo
+  escapeToClose=escapeToClose
+  focusOnOpen=focusOnOpen
+  fullscreen=fullscreen
+  parent=parent
+  onClose=(action "close")}}
 
-    {{#if title}}
-      <h2 class="md-title">{{title}}</h2>
-    {{/if}}
+  {{#if title}}
+    <h2 class="md-title">{{title}}</h2>
+  {{/if}}
 
-    {{#if loading}}
-      <div class="layout-row layout-align-center-center">
-        {{paper-progress-circular diameter=130}}
-      </div>
-    {{else}}
-      {{#paper-list class="flex"}}
-        {{#each _options as |option index|}}
-          {{#paper-item class=itemClass as |controls|}}
-            {{#if multiple}}
-              {{controls.checkbox
-                value=(ember-paper-selection-dialog-is-selected option _selected)
-                onChange=(action "updateSelected" option)}}
-            {{else}}
-              {{controls.radio
-                value=option
-                groupValue=_selected
-                onChange=(action (mut _selected option))}}
-            {{/if}}
-            <div class="md-list-item-text">
-              {{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}
-            </div>
-          {{/paper-item}}
-        {{/each}}
-      {{/paper-list}}
-    {{/if}}
+  {{#if loading}}
+    <div class="layout-row layout-align-center-center">
+      {{paper-progress-circular diameter=130}}
+    </div>
+  {{else}}
+    {{#paper-list class="flex"}}
+      {{#each _options as |option index|}}
+        {{#paper-item class=itemClass as |controls|}}
+          {{#if multiple}}
+            {{controls.checkbox
+              value=(ember-paper-selection-dialog-is-selected option _selected)
+              onChange=(action "updateSelected" option)}}
+          {{else}}
+            {{controls.radio
+              value=option
+              groupValue=_selected
+              onChange=(action (mut _selected option))}}
+          {{/if}}
+          <div class="md-list-item-text">
+            {{yield option (ember-paper-selection-dialog-is-selected option _selected) index}}
+          </div>
+        {{/paper-item}}
+      {{else}}
+        {{#paper-item class="selection-dialog--no-options"}}
+          {{noOptionsMessage}}
+        {{/paper-item}}
+      {{/each}}
+    {{/paper-list}}
+  {{/if}}
 
   {{#paper-dialog-actions class="layout-row"}}
     {{#paper-button onClick=(action "close")}}

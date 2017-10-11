@@ -50,6 +50,7 @@ Don't forget to import your styles in your `app.scss` **after** importing ember 
 - `confirmLabel` - defaults to `'Confirm'` - you can specify an alternate text for the confirm button
 - `title` - the displayed title of the dialog
 - `closeOnConfirm` - defaults to `true` - by default the component will also send the `onClose` action when you click the confirm button
+- `noOptionsMessage` - defaults to `'No options.'` - you can specify a message to show when `options` is or resolves to a falsy value
 
 ## Running
 
