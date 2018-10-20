@@ -1,17 +1,16 @@
-import Ember from 'ember';
-const { Controller } = Ember;
+import Controller from '@ember/controller';
 
 export default Controller.extend({
-  options: [
+  options: Object.freeze([
     'Portugal',
     'USA',
     'Spain',
     'Canada',
     'Italy',
     'Sweden'
-  ],
+  ]),
 
-  people: [
+  people: Object.freeze([
     {
       name: 'D. Afonso I',
       description: 'Founder of the Kingdom of Portugal'
@@ -32,5 +31,5 @@ export default Controller.extend({
       name: 'D. Afonso III',
       description: 'Son of Alphonso II'
     }
-  ]
+  ])
 });

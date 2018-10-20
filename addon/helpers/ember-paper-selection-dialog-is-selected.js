@@ -1,5 +1,7 @@
-import Ember from 'ember';
-const { isEqual, isArray, Helper, observer } = Ember;
+import { isEqual } from '@ember/utils';
+import { isArray } from '@ember/array';
+import Helper from '@ember/component/helper';
+import { observer } from '@ember/object';
 
 export default Helper.extend({
   compute([option, selected]) {

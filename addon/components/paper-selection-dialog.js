@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import RSVP from 'rsvp';
 import layout from '../templates/components/paper-selection-dialog';
-
-const { Component, RSVP } = Ember;
 
 export default Component.extend({
   layout,
@@ -82,14 +81,20 @@ export default Component.extend({
     },
 
     confirm() {
-      this.sendAction('onSelect', this.get('_selected'));
+      if (this.get('onSelect')) {
+        this.get('onSelect')(this.get('_selected'));
+      }
       if (this.get('closeOnConfirm')) {
-        this.sendAction('onClose');
+        if (this.get('onClose')) {
+          this.get('onClose')();
+        }
       }
     },
 
     close() {
-      this.sendAction('onClose');
+      if (this.get('onClose')) {
+        this.get('onClose')();
+      }
     }
   }
 });
